@@ -1,0 +1,14 @@
+__pycache__
+*.py[cod] this means *.pyo or *.pyc or *.pyd
+.coverage output of code coverage app
+*.log
+# Intellij files
+.idea/
+*.iml
+# Eclipse, Pydev, and VSCode files
+.settings
+.project/
+.vscode/
+# Virtual env files (common directory names)
+venv/
+env/
