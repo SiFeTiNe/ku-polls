@@ -36,6 +36,48 @@ class QuestionModelTests(TestCase):
         recent_question = Question(pub_date=time)
         self.assertIs(recent_question.was_published_recently(), True)
 
+    def test_is_published_before_publishing_date(self):
+        """
+        is_published() returns False for questions whose pub_date is in the future.
+        """
+        time = timezone.now() + datetime.timedelta(days=2)
+        publishing_question = Question(pub_date = time)
+        self.assertFalse(publishing_question.is_published())
+
+    def test_is_published_after_publishing_date(self):
+        """
+        is_published() returns True for questions whose pub_date is in the past.
+        """
+        time = timezone.now() - datetime.timedelta(days=2)
+        published_question = Question(pub_date = time)
+        self.assertTrue(published_question.is_published())
+
+    def test_can_vote_before_publishing_date(self):
+        """
+        can_vote() returns False for questions whose pub_date is in the past.
+        """
+        time = timezone.now() + datetime.timedelta(days=2)
+        publishing_question = Question(pub_date = time)
+        self.assertFalse(publishing_question.can_vote())
+
+    def test_can_vote_during_publishing_date_and_ending_date(self):
+        """
+        can_vote() returns True during the poll is open.
+        """
+        time = timezone.now() - datetime.timedelta(days=2)
+        ending_date = timezone.now() + datetime.timedelta(days=2)
+        published_question = Question(pub_date = time, end_date = ending_date)
+        self.assertTrue(published_question.can_vote())
+
+    def test_can_vote_after_ending_date(self):
+        """
+        can_vote() returns False for questions whose end_date is in the past.
+        """
+        time = timezone.now() - datetime.timedelta(days=4)
+        ending_date = timezone.now() - datetime.timedelta(days=2)
+        published_question = Question(pub_date = time, end_date = ending_date)
+        self.assertFalse(published_question.can_vote())
+
 
 def create_question(question_text, days):
     """

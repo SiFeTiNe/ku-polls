@@ -27,5 +27,7 @@
 </ul>
 -->
 
-<a href="{% url 'polls:detail' question.id %}">Vote again?</a></br>
+{% if question.can_vote %}
+    <a href="{% url 'polls:detail' question.id %}">Vote again?</a></br>
+{% endif %}
 <a href="{% url 'polls:index' %}">Back to List of Polls</a>
