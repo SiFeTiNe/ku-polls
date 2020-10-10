@@ -1,5 +1,6 @@
 ## ku-polls
 [![Build Status](https://travis-ci.com/keyboard2543/ku-polls.svg?branch=master)](https://travis-ci.com/keyboard2543/ku-polls)
+[![codecov](https://codecov.io/gh/keyboard2543/ku-polls/branch/master/graph/badge.svg)](https://codecov.io/gh/keyboard2543/ku-polls)
 
 A web application for conducting a poll or survey.
 ## Documentations
