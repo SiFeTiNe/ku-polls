@@ -1,6 +1,6 @@
 __pycache__
-*.py[cod] this means *.pyo or *.pyc or *.pyd
-.coverage output of code coverage app
+*.py[cod]
+.coverage
 *.log
 *.sqlite3
 # Intellij files
